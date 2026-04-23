@@ -1,0 +1,670 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Candle Bunk House | Hand-Poured Candles from Arizona</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Raleway:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+:root{
+  --rust:#C4582A;--amber:#E8A030;--gold:#F2C96E;
+  --cream:#FDF6EC;--sand:#F0E4CC;--warm-white:#FEFAF4;
+  --bark:#7A4A28;--night:#1A1610;--dusk:#2E2418;
+  --muted:#8A7060;--sage:#6B7C5A;
+}
+body{font-family:'Raleway',sans-serif;background:var(--warm-white);color:var(--night);overflow-x:hidden}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:200;display:flex;justify-content:space-between;align-items:center;padding:0 3.5rem;height:70px;background:rgba(253,246,236,0.95);backdrop-filter:blur(12px);border-bottom:1px solid rgba(196,88,42,0.15);transition:box-shadow .3s}
+nav.scrolled{box-shadow:0 4px 30px rgba(122,74,40,0.12)}
+.nav-brand{display:flex;align-items:center;gap:0.8rem;text-decoration:none}
+.nav-logo-img{width:46px;height:46px;border-radius:50%;object-fit:cover;border:2px solid var(--rust)}
+.nav-brand-name{font-family:'Playfair Display',serif;font-size:1.05rem;color:var(--rust);letter-spacing:0.03em;line-height:1.2}
+.nav-brand-name span{display:block;font-size:0.62rem;letter-spacing:0.18em;text-transform:uppercase;color:var(--muted);font-family:'Raleway',sans-serif;font-weight:500}
+.nav-links{display:flex;gap:2rem;list-style:none;align-items:center}
+.nav-links a{font-size:0.76rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--dusk);text-decoration:none;font-weight:500;transition:color .2s}
+.nav-links a:hover{color:var(--rust)}
+.nav-etsy{background:var(--rust);color:#fff !important;padding:0.48rem 1.3rem;border-radius:2rem;transition:background .2s !important}
+.nav-etsy:hover{background:var(--bark) !important}
+
+/* HERO */
+.hero{position:relative;min-height:100vh;display:flex;flex-direction:column;overflow:hidden}
+.hero-banner-img{width:100%;height:58vh;object-fit:cover;object-position:center 40%;display:block}
+.hero-overlay{position:absolute;top:0;left:0;right:0;height:58vh;background:linear-gradient(to bottom,rgba(26,22,16,0.5) 0%,rgba(26,22,16,0.1) 50%,rgba(26,22,16,0.65) 100%)}
+.hero-content-wrap{position:absolute;top:0;left:0;right:0;height:58vh;display:flex;align-items:flex-end;padding:0 5rem 3rem}
+.hero-eyebrow{display:inline-flex;align-items:center;gap:0.5rem;font-size:0.68rem;letter-spacing:0.22em;text-transform:uppercase;color:var(--gold);border:1px solid rgba(242,201,110,0.4);padding:0.3rem 0.9rem;border-radius:2rem;margin-bottom:1rem;animation:fadeUp .8s ease both}
+.hero-h1{font-family:'Playfair Display',serif;font-size:clamp(2.4rem,4.5vw,3.8rem);color:#fff;line-height:1.1;text-shadow:0 2px 20px rgba(0,0,0,0.4);animation:fadeUp .8s .1s ease both;margin-bottom:1rem}
+.hero-h1 em{font-style:italic;color:var(--gold)}
+.hero-sub{font-size:0.95rem;color:rgba(255,255,255,0.8);line-height:1.7;font-weight:300;max-width:480px;margin-bottom:1.5rem;animation:fadeUp .8s .2s ease both}
+.hero-btns{display:flex;gap:0.8rem;flex-wrap:wrap;animation:fadeUp .8s .3s ease both}
+.btn-rust{background:var(--rust);color:#fff;padding:0.75rem 1.9rem;border-radius:3rem;font-size:0.82rem;letter-spacing:0.08em;text-decoration:none;font-weight:600;transition:background .2s,transform .2s;display:inline-block}
+.btn-rust:hover{background:#a84420;transform:translateY(-2px)}
+.btn-ghost{border:1.5px solid rgba(255,255,255,0.5);color:#fff;padding:0.75rem 1.9rem;border-radius:3rem;font-size:0.82rem;letter-spacing:0.08em;text-decoration:none;transition:border-color .2s,transform .2s;display:inline-block}
+.btn-ghost:hover{border-color:var(--gold);transform:translateY(-2px)}
+.hero-bottom{background:var(--cream);padding:2.5rem 5rem;display:grid;grid-template-columns:repeat(4,1fr);gap:1.5rem;border-bottom:1px solid rgba(196,88,42,0.12)}
+.stat-item{text-align:center}
+.stat-num{font-family:'Playfair Display',serif;font-size:2rem;color:var(--rust)}
+.stat-label{font-size:0.7rem;letter-spacing:0.14em;text-transform:uppercase;color:var(--muted);margin-top:0.2rem}
+
+/* TICKER */
+.ticker{background:var(--rust);color:#fff;padding:0.65rem 0;overflow:hidden;font-size:0.74rem;letter-spacing:0.14em;text-transform:uppercase}
+.ticker-inner{display:flex;gap:4rem;white-space:nowrap;animation:ticker 28s linear infinite}
+.ticker-item::before{content:'✦ ';color:var(--gold)}
+@keyframes ticker{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+/* ABOUT */
+.about-wrap{padding:6rem 5rem;display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:center;max-width:1300px;margin:0 auto}
+.section-eyebrow{font-size:0.7rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--rust);font-weight:600;display:block;margin-bottom:0.8rem}
+.section-title{font-family:'Playfair Display',serif;font-size:clamp(1.8rem,3vw,2.6rem);line-height:1.2;color:var(--night);margin-bottom:1.2rem}
+.section-title em{font-style:italic;color:var(--rust)}
+.about-text p{font-size:0.96rem;line-height:1.85;color:var(--muted);font-weight:300;margin-bottom:1rem}
+.raquel-photo{width:100%;border-radius:1.5rem;object-fit:cover;max-height:520px;display:block;box-shadow:0 20px 60px rgba(122,74,40,0.18)}
+.photo-wrap{position:relative}
+.photo-badge{position:absolute;bottom:-1.5rem;right:-1.5rem;background:var(--rust);color:#fff;border-radius:50%;width:108px;height:108px;display:flex;flex-direction:column;align-items:center;justify-content:center;font-family:'Playfair Display',serif;text-align:center;box-shadow:0 8px 24px rgba(196,88,42,0.4)}
+.photo-badge .big{font-size:1.6rem;font-weight:700;line-height:1}
+.photo-badge .sm{font-size:0.52rem;letter-spacing:0.1em;text-transform:uppercase;margin-top:0.2rem}
+.pills{display:flex;flex-wrap:wrap;gap:0.5rem;margin-top:1.5rem}
+.pill{background:var(--sand);color:var(--bark);padding:0.38rem 0.9rem;border-radius:2rem;font-size:0.71rem;letter-spacing:0.06em;font-weight:600}
+
+/* PRODUCTS */
+.products-section{background:var(--night);padding:6rem 3.5rem}
+.products-header{text-align:center;margin-bottom:2.5rem}
+.products-header .section-eyebrow{color:var(--gold)}
+.products-header .section-title{color:#fff}
+.products-header p{color:rgba(255,255,255,0.45);font-size:0.93rem;font-weight:300;max-width:500px;margin:0 auto 1.2rem}
+.shop-all{display:inline-block;border:1px solid rgba(242,201,110,0.4);color:var(--gold);padding:0.5rem 1.5rem;border-radius:2rem;font-size:0.73rem;letter-spacing:0.12em;text-transform:uppercase;text-decoration:none;transition:background .2s;font-weight:600}
+.shop-all:hover{background:rgba(242,201,110,0.1)}
+.filter-tabs{display:flex;justify-content:center;gap:0.5rem;flex-wrap:wrap;margin-bottom:2.5rem}
+.ftab{background:transparent;border:1px solid rgba(255,255,255,0.14);color:rgba(255,255,255,0.45);padding:0.38rem 1rem;border-radius:2rem;font-size:0.7rem;letter-spacing:0.1em;text-transform:uppercase;cursor:pointer;font-family:'Raleway',sans-serif;font-weight:600;transition:all .2s}
+.ftab.active,.ftab:hover{border-color:var(--rust);color:#fff;background:var(--rust)}
+.products-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(255px,1fr));gap:1.5rem;max-width:1300px;margin:0 auto}
+.pcard{background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.07);border-radius:1.2rem;overflow:hidden;transition:transform .3s,box-shadow .3s,border-color .3s;cursor:pointer;position:relative;text-decoration:none;display:block}
+.pcard:hover{transform:translateY(-7px);box-shadow:0 24px 60px rgba(196,88,42,0.22);border-color:rgba(196,88,42,0.35)}
+.pcard .ptag{position:absolute;top:0.75rem;left:0.75rem;z-index:2;background:var(--rust);color:#fff;padding:0.22rem 0.65rem;border-radius:2rem;font-size:0.6rem;letter-spacing:0.1em;text-transform:uppercase;font-weight:700}
+.pimg-wrap{height:210px;overflow:hidden;position:relative}
+.pimg-wrap img{width:100%;height:100%;object-fit:cover;transition:transform .5s;display:block}
+.pcard:hover .pimg-wrap img{transform:scale(1.06)}
+.pimg-wrap::after{content:'';position:absolute;inset:0;background:linear-gradient(to bottom,transparent 55%,rgba(26,22,16,0.55))}
+.pbody{padding:1.1rem}
+.pscent{font-size:0.63rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--gold);margin-bottom:0.3rem;font-weight:600}
+.pname{font-family:'Playfair Display',serif;font-size:1.05rem;color:#fff;margin-bottom:0.35rem;line-height:1.3}
+.pnotes{font-size:0.76rem;color:rgba(255,255,255,0.42);line-height:1.5;margin-bottom:0.85rem;font-weight:300}
+.pfoot{display:flex;justify-content:space-between;align-items:center}
+.pprice{font-size:1.1rem;color:var(--amber);font-weight:600}
+.pcta{background:var(--rust);color:#fff;padding:0.38rem 0.95rem;border-radius:2rem;font-size:0.68rem;letter-spacing:0.06em;font-weight:600;transition:background .2s}
+.pcard:hover .pcta{background:#a84420}
+.pcard.hidden{display:none}
+
+/* ALLERGY */
+.allergy-section{background:var(--cream);padding:6rem 5rem}
+.allergy-inner{max-width:1300px;margin:0 auto}
+.allergy-header{text-align:center;margin-bottom:3.5rem}
+.allergy-header p{color:var(--muted);font-size:0.95rem;font-weight:300;max-width:540px;margin:0 auto;line-height:1.8}
+.allergy-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(215px,1fr));gap:1.3rem}
+.acard{background:#fff;border-radius:1.1rem;padding:1.8rem 1.5rem;border:1px solid rgba(196,88,42,0.1);transition:transform .2s,box-shadow .2s}
+.acard:hover{transform:translateY(-4px);box-shadow:0 12px 40px rgba(122,74,40,0.1)}
+.aicon{font-size:1.9rem;margin-bottom:0.9rem;display:block}
+.atitle{font-family:'Playfair Display',serif;font-size:1rem;color:var(--night);margin-bottom:0.45rem}
+.adesc{font-size:0.82rem;color:var(--muted);line-height:1.7;font-weight:300}
+
+/* ARIZONA */
+.az-section{position:relative;overflow:hidden;padding:6rem 5rem;background:linear-gradient(135deg,#1A1610 0%,#2E1C0E 40%,#7A4A28 70%,#C4582A 88%,#E8A030 100%)}
+.az-inner{max-width:1300px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:center}
+.az-content h2{font-family:'Playfair Display',serif;font-size:clamp(2rem,3.5vw,3rem);color:#fff;margin-bottom:1.2rem;line-height:1.2}
+.az-content h2 em{color:var(--gold);font-style:italic}
+.az-content p{font-size:0.95rem;color:rgba(255,255,255,0.75);line-height:1.8;font-weight:300;margin-bottom:0.9rem}
+.az-photos{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+.azp{border-radius:1rem;overflow:hidden;height:175px}
+.azp img{width:100%;height:100%;object-fit:cover;display:block}
+.azp-wide{grid-column:span 2;height:135px;border-radius:1rem;overflow:hidden}
+.azp-wide img{width:100%;height:100%;object-fit:cover;display:block}
+
+/* REVIEWS */
+.reviews-section{background:#fff;padding:6rem 5rem}
+.reviews-inner{max-width:1300px;margin:0 auto}
+.reviews-header{text-align:center;margin-bottom:3.5rem}
+.rev-stars-big{font-size:1.2rem;color:var(--amber);margin-bottom:0.5rem;letter-spacing:0.1em}
+.rev-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(270px,1fr));gap:1.3rem}
+.rcard{background:var(--warm-white);border-radius:1.1rem;padding:1.5rem;border:1px solid rgba(196,88,42,0.1)}
+.rcard-stars{color:var(--amber);font-size:0.88rem;margin-bottom:0.55rem}
+.rcard-text{font-size:0.86rem;color:var(--dusk);line-height:1.7;font-style:italic;font-weight:300;margin-bottom:0.9rem}
+.rcard-author{font-size:0.72rem;letter-spacing:0.08em;text-transform:uppercase;color:var(--muted);font-weight:600}
+
+/* SHIPPING CTA */
+.ship-section{background:var(--sand);padding:5rem;text-align:center}
+.ship-inner{max-width:680px;margin:0 auto}
+.ship-section p{font-size:0.95rem;color:var(--muted);line-height:1.8;font-weight:300;margin-bottom:2rem}
+.ship-feats{display:flex;justify-content:center;gap:3rem;flex-wrap:wrap;margin-bottom:2.5rem}
+.sf{display:flex;flex-direction:column;align-items:center;gap:0.35rem}
+.sf-icon{font-size:1.7rem}
+.sf-label{font-size:0.7rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--bark);font-weight:600}
+.etsy-btn{display:inline-block;background:var(--rust);color:#fff;padding:1rem 2.8rem;border-radius:3rem;font-size:0.88rem;letter-spacing:0.1em;text-decoration:none;font-weight:700;transition:background .2s,transform .2s;text-transform:uppercase}
+.etsy-btn:hover{background:var(--bark);transform:translateY(-2px)}
+
+/* FOOTER */
+footer{background:var(--night);padding:4rem 5rem;color:rgba(255,255,255,0.4)}
+.footer-grid{max-width:1300px;margin:0 auto;display:grid;grid-template-columns:2fr 1fr 1fr;gap:3rem;margin-bottom:3rem}
+.footer-brand{display:flex;align-items:center;gap:1rem;margin-bottom:1rem}
+.f-logo{width:54px;height:54px;border-radius:50%;object-fit:cover;border:2px solid var(--rust)}
+.f-brand-text{font-family:'Playfair Display',serif;font-size:1.05rem;color:var(--gold)}
+.f-brand-text span{display:block;font-size:0.6rem;letter-spacing:0.16em;text-transform:uppercase;color:rgba(255,255,255,0.28);font-family:'Raleway',sans-serif}
+.footer-about{font-size:0.83rem;line-height:1.7;color:rgba(255,255,255,0.33);font-weight:300}
+.footer-socials{display:flex;gap:0.7rem;margin-top:1.1rem}
+.soc{width:34px;height:34px;border-radius:50%;border:1px solid rgba(255,255,255,0.14);display:flex;align-items:center;justify-content:center;font-size:0.75rem;text-decoration:none;color:rgba(255,255,255,0.45);transition:border-color .2s,color .2s;font-weight:600}
+.soc:hover{border-color:var(--rust);color:var(--rust)}
+.fcol h4{font-size:0.7rem;letter-spacing:0.16em;text-transform:uppercase;color:rgba(255,255,255,0.45);margin-bottom:1rem;font-weight:600}
+.fcol ul{list-style:none}
+.fcol ul li{margin-bottom:0.45rem}
+.fcol ul li a{font-size:0.83rem;color:rgba(255,255,255,0.28);text-decoration:none;transition:color .2s;font-weight:300}
+.fcol ul li a:hover{color:var(--gold)}
+.footer-bottom{border-top:1px solid rgba(255,255,255,0.07);padding-top:1.8rem;text-align:center;font-size:0.74rem;color:rgba(255,255,255,0.18);letter-spacing:0.05em}
+.footer-bottom a{color:rgba(255,255,255,0.28);text-decoration:none}
+
+@keyframes fadeUp{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:translateY(0)}}
+
+/* MODAL */
+.modal-bg{display:none;position:fixed;inset:0;background:rgba(26,22,16,0.82);z-index:500;align-items:center;justify-content:center;padding:1.5rem}
+.modal-bg.open{display:flex}
+.modal-box{background:#fff;border-radius:1.5rem;max-width:460px;width:100%;overflow:hidden;position:relative;animation:fadeUp .28s ease}
+.modal-img{width:100%;height:230px;object-fit:cover;display:block}
+.modal-body{padding:1.7rem}
+.modal-close{position:absolute;top:0.9rem;right:0.9rem;width:30px;height:30px;border-radius:50%;border:none;background:rgba(255,255,255,0.9);cursor:pointer;font-size:1rem;display:flex;align-items:center;justify-content:center;color:var(--dusk);font-weight:700}
+.m-tag{font-size:0.66rem;letter-spacing:0.16em;text-transform:uppercase;color:var(--rust);font-weight:700;margin-bottom:0.35rem}
+.m-name{font-family:'Playfair Display',serif;font-size:1.45rem;color:var(--night);margin-bottom:0.45rem}
+.m-desc{font-size:0.86rem;color:var(--muted);line-height:1.7;font-weight:300;margin-bottom:0.9rem}
+.m-price{font-size:1.35rem;color:var(--rust);font-weight:700;margin-bottom:1.1rem}
+.m-link{display:block;text-align:center;background:var(--rust);color:#fff;padding:0.82rem;border-radius:3rem;font-size:0.84rem;letter-spacing:0.08em;text-decoration:none;font-weight:700;transition:background .2s;text-transform:uppercase}
+.m-link:hover{background:var(--bark)}
+
+/* RESPONSIVE */
+@media(max-width:900px){
+  nav{padding:0 1.5rem}
+  .nav-links{display:none}
+  .hero-content-wrap{padding:0 1.5rem 2rem}
+  .hero-bottom{grid-template-columns:repeat(2,1fr);padding:2rem 1.5rem}
+  .about-wrap,.az-inner,.footer-grid{grid-template-columns:1fr;gap:2.5rem}
+  .about-wrap,.products-section,.allergy-section,.az-section,.reviews-section,.ship-section{padding:4rem 1.5rem}
+  .photo-badge{right:0.5rem;bottom:-1rem;width:88px;height:88px}
+  .az-photos{grid-template-columns:1fr}
+  .azp-wide{grid-column:span 1}
+  footer{padding:3rem 1.5rem}
+  .ship-section{padding:4rem 1.5rem}
+}
+</style>
+</head>
+<body>
+
+<nav id="mainNav">
+  <a href="#" class="nav-brand">
+    <img src="https://i.etsystatic.com/8814390/r/isla/0557b1/68080192/isla_180x180.68080192_932orakt.jpg" alt="The Candle Bunk House" class="nav-logo-img">
+    <div class="nav-brand-name">The Candle Bunk House<span>Saint David, Arizona</span></div>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#about">Our Story</a></li>
+    <li><a href="#candles">Shop</a></li>
+    <li><a href="#allergy">Allergy-Free</a></li>
+    <li><a href="#reviews">Reviews</a></li>
+    <li><a href="https://www.etsy.com/shop/TheCandleBunkhouse" target="_blank" class="nav-etsy">Buy on Etsy</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <img src="https://i.etsystatic.com/8814390/r/isbl/4964da/68080188/isbl_1680x420.68080188_lfo06bll.jpg" alt="The Candle Bunk House" class="hero-banner-img">
+  <div class="hero-overlay"></div>
+  <div class="hero-content-wrap">
+    <div>
+      <div class="hero-eyebrow">✦ Hand-Poured in Arizona · Ships Nationwide</div>
+      <h1 class="hero-h1">Scents That Tell an <em>Arizona Story</em></h1>
+      <p class="hero-sub">Beautifully crafted, allergy-conscious candles made with love by Raquel in Saint David, AZ — shipped right to your door, coast to coast.</p>
+      <div class="hero-btns">
+        <a href="#candles" class="btn-rust">Shop the Collection</a>
+        <a href="https://www.etsy.com/shop/TheCandleBunkhouse" target="_blank" class="btn-ghost">Visit Our Etsy Shop</a>
+      </div>
+    </div>
+  </div>
+  <div class="hero-bottom">
+    <div class="stat-item"><div class="stat-num">503</div><div class="stat-label">Happy Sales</div></div>
+    <div class="stat-item"><div class="stat-num">5.0 ★</div><div class="stat-label">Avg Rating</div></div>
+    <div class="stat-item"><div class="stat-num">11+</div><div class="stat-label">Years on Etsy</div></div>
+    <div class="stat-item"><div class="stat-num">20+</div><div class="stat-label">Unique Scents</div></div>
+  </div>
+</section>
+
+<div class="ticker"><div class="ticker-inner">
+  <span class="ticker-item">Free Nationwide Shipping on Orders Over $45</span>
+  <span class="ticker-item">Allergy-Friendly Parasoy Wax</span>
+  <span class="ticker-item">Hand-Poured in Arizona</span>
+  <span class="ticker-item">Phthalate-Free Fragrances</span>
+  <span class="ticker-item">5-Star Rated Shop</span>
+  <span class="ticker-item">Cotton Wicks Only</span>
+  <span class="ticker-item">Free Nationwide Shipping on Orders Over $45</span>
+  <span class="ticker-item">Allergy-Friendly Parasoy Wax</span>
+  <span class="ticker-item">Hand-Poured in Arizona</span>
+  <span class="ticker-item">Phthalate-Free Fragrances</span>
+  <span class="ticker-item">5-Star Rated Shop</span>
+  <span class="ticker-item">Cotton Wicks Only</span>
+</div></div>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="about-wrap">
+    <div class="photo-wrap">
+      <img src="https://i.etsystatic.com/isa/faf79b/1195961885507/isa_760xN.1195961885507_hkpl.jpg" alt="Raquel at The Candle Bunk House" class="raquel-photo">
+      <div class="photo-badge"><div class="big">11</div><div class="sm">Years of<br>Candle Love</div></div>
+    </div>
+    <div class="about-text">
+      <span class="section-eyebrow">Our Story</span>
+      <h2 class="section-title">From Hobby to <em>Heart & Soul</em></h2>
+      <p>Hi, I'm Raquel — your Candle Lady at The Candle Bunk House. What started as a love of fragrances became something so much greater: a small business built on passion, perseverance, and the belief of my family.</p>
+      <p>My journey wasn't without challenges — finding the right wick, perfecting fragrance ratios, eliminating tunneling. Through trial and error, I found my craft. Today, every candle I pour carries that story.</p>
+      <p>My husband John and I are both left-handed Arizonans who love travel, dachshunds, and — of course — beautiful scents. We're proud to bring the warmth of the Southwest to your home.</p>
+      <p style="font-style:italic;color:var(--rust);font-family:'Playfair Display',serif;font-size:1rem">"Wherever life plants you, bloom with grace."</p>
+      <div class="pills">
+        <span class="pill">✓ Parasoy Wax Blend</span>
+        <span class="pill">✓ Phthalate-Free</span>
+        <span class="pill">✓ Cotton Wicks</span>
+        <span class="pill">✓ Small Batch</span>
+        <span class="pill">✓ Hand-Poured</span>
+        <span class="pill">✓ Allergy Conscious</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRODUCTS -->
+<section id="candles" class="products-section">
+  <div class="products-header">
+    <span class="section-eyebrow">The Collection</span>
+    <h2 class="section-title">Shop Our Candles</h2>
+    <p>Every scent is hand-poured with care in Saint David, Arizona. Click any candle to learn more, then shop directly on Etsy.</p>
+    <a href="https://www.etsy.com/shop/TheCandleBunkhouse" target="_blank" class="shop-all">View All on Etsy ↗</a>
+  </div>
+
+  <div class="filter-tabs">
+    <button class="ftab active" data-filter="all">All</button>
+    <button class="ftab" data-filter="citrus">Citrus &amp; Fresh</button>
+    <button class="ftab" data-filter="floral">Floral</button>
+    <button class="ftab" data-filter="sweet">Sweet &amp; Bakery</button>
+    <button class="ftab" data-filter="earthy">Earthy &amp; Woodsy</button>
+    <button class="ftab" data-filter="coastal">Coastal</button>
+    <button class="ftab" data-filter="specialty">Specialty</button>
+  </div>
+
+  <div class="products-grid" id="productGrid">
+
+    <a href="https://www.etsy.com/listing/1566463434/16oz-paint-can-candles-fall-candles" target="_blank" class="pcard" data-cat="specialty" data-name="Paint Can Candle (16oz)" data-price="$6.00" data-tag="Specialty · 16oz" data-desc="Our iconic 16oz Paint Can Candle — a one-of-a-kind vessel packed with highly scented parasoy wax. A showstopper gift or statement home piece." data-img="https://i.etsystatic.com/8814390/r/il/1d2882/6111599671/il_340x270.6111599671_puwo.jpg">
+      <span class="ptag">Bestseller</span>
+      <div class="pimg-wrap"><img src="https://i.etsystatic.com/8814390/r/il/1d2882/6111599671/il_340x270.6111599671_puwo.jpg" alt="Paint Can Candle 16oz" loading="lazy"></div>
+      <div class="pbody">
+        <div class="pscent">Specialty · 16oz</div>
+        <div class="pname">Paint Can Candle</div>
+        <div class="pnotes">Parasoy blend · Unique vessel · Home Decor</div>
+        <div class="pfoot"><span class="pprice">$6.00</span><span class="pcta">Shop Etsy ↗</span></div>
+      </div>
+    </a>
+
+    <a href="https://www.etsy.com/listing/1624576297/8oz-paint-can-candles-winter-candles" target="_blank" class="pcard" data-cat="specialty" data-name="Paint Can Candle (8oz)" data-price="$3.00" data-tag="Specialty · 8oz" data-desc="The beloved Paint Can Candle in an 8oz size — perfect for gifting or trying a new scent. Homemade parasoy wax, highly scented, and totally unique." data-img="https://i.etsystatic.com/8814390/r/il/6ab8cb/6111653405/il_340x270.6111653405_opwj.jpg">
+      <div class="pimg-wrap"><img src="https://i.etsystatic.com/8814390/r/il/6ab8cb/6111653405/il_340x270.6111653405_opwj.jpg" alt="8oz Paint Can Candle" loading="lazy"></div>
+      <div class="pbody">
+        <div class="pscent">Specialty · 8oz</div>
+        <div class="pname">Paint Can Candle (8oz)</div>
+        <div class="pnotes">Parasoy blend · Highly Scented · Gift-ready</div>
+        <div class="pfoot"><span class="pprice">$3.00</span><span class="pcta">Shop Etsy ↗</span></div>
+      </div>
+    </a>
+
+    <a href="https://www.etsy.com/listing/4488058354/cote-dazur-candle-o-luxury-coastal-scent" target="_blank" class="pcard" data-cat="coastal" data-name="Côte d'Azur" data-price="$12.50" data-tag="Coastal · Luxury · 8oz" data-desc="A luxury coastal scent inspired by the French Riviera. Marine, jasmine & sandalwood mingle to create a beachy, fresh, summer-ready fragrance." data-img="https://i.etsystatic.com/8814390/r/il/996099/7956630097/il_340x270.7956630097_jr2l.jpg">
+      <span class="ptag">Featured</span>
+      <div class="pimg-wrap"><img src="https://i.etsystatic.com/8814390/r/il/996099/7956630097/il_340x270.7956630097_jr2l.jpg" alt="Cote d'Azur Candle" loading="lazy"></div>
+      <div class="pbody">
+        <div class="pscent">Coastal · Luxury · 8oz</div>
+        <div class="pname">Côte d'Azur</div>
+        <div class="pnotes">Marine · Jasmine · Sandalwood</div>
+        <div class="pfoot"><span class="pprice">$12.50</span><span class="pcta">Shop Etsy ↗</span></div>
+      </div>
+    </a>
+
+    <a href="https://www.etsy.com/listing/4490303555/lemon-meringue-pie-candle-sweet-bakery" target="_blank" class="pcard" data-cat="sweet" data-name="Lemon Meringue Pie" data-price="$12.50" data-tag="Sweet · Bakery · 8oz" data-desc="Bright citrus meets warm vanilla in this sweet bakery candle. Lemon, vanilla & pie crust create a dessert-inspired fragrance that fills any room." data-img="https://i.etsystatic.com/8814390/r/il/6602c1/7971514947/il_340x270.7971514947_h825.jpg">
+      <div class="pimg-wrap"><img src="https://i.etsystatic.com/8814390/r/il/6602c1/7971514947/il_340x270.7971514947_h825.jpg" alt="Lemon Meringue Pie Candle" loading="lazy"></div>
+      <div class="pbody">
+        <div class="pscent">Sweet · Bakery · 8oz</div>
+        <div class="pname">Lemon Meringue Pie</div>
+        <div class="pnotes">Lemon · Vanilla · Pie Crust</div>
+        <div class="pfoot"><span class="pprice">$12.50</span><span class="pcta">Shop Etsy ↗</span></div>
+      </div>
+    </a>
+
+    <a href="https://www.etsy.com/listing/4490304906/honeydew-melon-candle-fresh-fruity-scent" target="_blank" class="pcard" data-cat="citrus" data-name="Honeydew Melon" data-price="$12.50" data-tag="Fresh · Fruity · 8oz" data-desc="A fresh, fruity summer scent — cucumber, melon & sugar come together for a clean, refreshing fragrance perfect for warm Arizona days." data-img="https://i.etsystatic.com/8814390/r/il/07478b/7971479435/il_340x270.7971479435_a46x.jpg">
+      <div class="pimg-wrap"><img src="https://i.etsystatic.com/8814390/r/il/07478b/7971479435/il_340x270.7971479435_a46x.jpg" alt="Honeydew Melon Candle" loading="lazy"></div>
+      <div class="pbody">
+        <div class="pscent">Fresh · Fruity · 8oz</div>
+        <div class="pname">Honeydew Melon</div>
+        <div class="pnotes">Cucumber · Melon · Sugar</div>
+        <div class="pfoot"><span class="pprice">$12.50</span><span class="pcta">Shop Etsy ↗</span></div>
+      </div>
+    </a>
+
+    <a href="https://www.etsy.com/listing/4490284577/desert-citrus-candle-bright-citrus-scent" target="_blank" class="pcard" data-cat="citrus" data-name="Desert Citrus" data-price="$12.50" data-tag="Southwest · Citrus · 8oz" data-desc="An Arizona original — orange, lemon & agave create a fresh, uplifting southwest fragrance. Clean and bright, just like a desert morning." data-img="https://i.etsystatic.com/8814390/r/il/fc32e6/7923434088/il_340x270.7923434088_iwvy.jpg">
+      <span class="ptag">AZ Inspired</span>
+      <div class="pimg-wrap"><img src="https://i.etsystatic.com/8814390/r/il/fc32e6/7923434088/il_340x270.7923434088_iwvy.jpg" alt="Desert Citrus Candle" loading="lazy"></div>
+      <div class="pbody">
+        <div class="pscent">Southwest · Citrus · 8oz</div>
+        <div class="pname">Desert Citrus</div>
+        <div class="pnotes">Orange · Lemon · Agave</div>
+        <div class="pfoot"><span class="pprice">$12.50</span><span class="pcta">Shop Etsy ↗</span></div>
+      </div>
+    </a>
+
+    <a href="https://www.etsy.com/listing/4489160223/orange-blossom-candle-bright-citrus" target="_blank" class="pcard" data-cat="floral" data-name="Orange Blossom" data-price="$12.50" data-tag="Citrus · Floral · 8oz" data-desc="Neroli, jasmine & sandalwood bloom together in this bright, energizing citrus floral. A fresh, clean home fragrance that lifts the spirit." data-img="https://i.etsystatic.com/8814390/r/il/96fb6f/7916110906/il_340x270.7916110906_e0ja.jpg">
+      <div class="pimg-wrap"><img src="https://i.etsystatic.com/8814390/r/il/96fb6f/7916110906/il_340x270.7916110906_e0ja.jpg" alt="Orange Blossom Candle" loading="lazy"></div>
+      <div class="pbody">
+        <div class="pscent">Citrus · Floral · 8oz</div>
+        <div class="pname">Orange Blossom</div>
+        <div class="pnotes">Neroli · Jasmine · Sandalwood</div>
+        <div class="pfoot"><span class="pprice">$12.50</span><span class="pcta">Shop Etsy ↗</span></div>
+      </div>
+    </a>
+
+    <a href="https://www.etsy.com/listing/4489152199/yuzu-blossom-candle-bright-citrus-floral" target="_blank" class="pcard" data-cat="citrus" data-name="Yuzu Blossom" data-price="$12.50" data-tag="Citrus · Uplifting · 8oz" data-desc="Bergamot, grapefruit & jasmine create a bright, uplifting summer fragrance. Fresh and airy, Yuzu Blossom is your go-to for any season." data-img="https://i.etsystatic.com/8814390/r/il/8e8389/7964018747/il_340x270.7964018747_204x.jpg">
+      <div class="pimg-wrap"><img src="https://i.etsystatic.com/8814390/r/il/8e8389/7964018747/il_340x270.7964018747_204x.jpg" alt="Yuzu Blossom Candle" loading="lazy"></div>
+      <div class="pbody">
+        <div class="pscent">Citrus · Floral · 8oz</div>
+        <div class="pname">Yuzu Blossom</div>
+        <div class="pnotes">Bergamot · Grapefruit · Jasmine</div>
+        <div class="pfoot"><span class="pprice">$12.50</span><span class="pcta">Shop Etsy ↗</span></div>
+      </div>
+    </a>
+
+    <a href="https://www.etsy.com/listing/4489143717/vanilla-candle-warm-sweet-bakery-scent" target="_blank" class="pcard" data-cat="sweet" data-name="Vanilla" data-price="$12.50" data-tag="Sweet · Cozy · 8oz" data-desc="Warm, sweet, and irresistibly cozy — buttercream, cake & bourbon vanilla come together in this classic comfort candle perfect for any room." data-img="https://i.etsystatic.com/8814390/r/il/908d3c/7916009588/il_340x270.7916009588_erm0.jpg">
+      <div class="pimg-wrap"><img src="https://i.etsystatic.com/8814390/r/il/908d3c/7916009588/il_340x270.7916009588_erm0.jpg" alt="Vanilla Candle" loading="lazy"></div>
+      <div class="pbody">
+        <div class="pscent">Sweet · Bakery · 8oz</div>
+        <div class="pname">Vanilla</div>
+        <div class="pnotes">Buttercream · Cake · Bourbon Vanilla</div>
+        <div class="pfoot"><span class="pprice">$12.50</span><span class="pcta">Shop Etsy ↗</span></div>
+      </div>
+    </a>
+
+    <a href="https://www.etsy.com/listing/4489144774/a-thousand-wishes-candle-sweet-feminine" target="_blank" class="pcard" data-cat="floral" data-name="A Thousand Wishes" data-price="$12.50" data-tag="Feminine · Gift · 8oz" data-desc="Champagne, peony & amber — a sweet, feminine celebration candle. A perfect gift for her. Light it up and make a wish." data-img="https://i.etsystatic.com/8814390/r/il/1d7342/7963903651/il_340x270.7963903651_tdd8.jpg">
+      <span class="ptag">Gift Idea ♥</span>
+      <div class="pimg-wrap"><img src="https://i.etsystatic.com/8814390/r/il/1d7342/7963903651/il_340x270.7963903651_tdd8.jpg" alt="A Thousand Wishes Candle" loading="lazy"></div>
+      <div class="pbody">
+        <div class="pscent">Floral · Feminine · 8oz</div>
+        <div class="pname">A Thousand Wishes</div>
+        <div class="pnotes">Champagne · Peony · Amber</div>
+        <div class="pfoot"><span class="pprice">$12.50</span><span class="pcta">Shop Etsy ↗</span></div>
+      </div>
+    </a>
+
+    <a href="https://www.etsy.com/listing/4489122473/vanilla-orchid-candle-creamy-floral" target="_blank" class="pcard" data-cat="floral" data-name="Vanilla Orchid" data-price="$12.50" data-tag="Spa · Exotic · 8oz" data-desc="Creamy, exotic, and relaxing — vanilla, jasmine & sandalwood create a spa-like atmosphere. Perfect for unwinding after a long day." data-img="https://i.etsystatic.com/8814390/r/il/dc1ea2/7915875294/il_340x270.7915875294_mdld.jpg">
+      <div class="pimg-wrap"><img src="https://i.etsystatic.com/8814390/r/il/dc1ea2/7915875294/il_340x270.7915875294_mdld.jpg" alt="Vanilla Orchid Candle" loading="lazy"></div>
+      <div class="pbody">
+        <div class="pscent">Spa · Floral · 8oz</div>
+        <div class="pname">Vanilla Orchid</div>
+        <div class="pnotes">Vanilla · Jasmine · Sandalwood</div>
+        <div class="pfoot"><span class="pprice">$12.50</span><span class="pcta">Shop Etsy ↗</span></div>
+      </div>
+    </a>
+
+    <a href="https://www.etsy.com/listing/4489110491/fog-fern-candle-earthy-forest-scent" target="_blank" class="pcard" data-cat="earthy" data-name="Fog & Fern" data-price="$12.50" data-tag="Earthy · Forest · 8oz" data-desc="Ozone, lavender and moss — an earthy forest scent for those who love the great outdoors. Calming, grounding, and deeply relaxing." data-img="https://i.etsystatic.com/8814390/r/il/0e49a8/7963746877/il_340x270.7963746877_948a.jpg">
+      <div class="pimg-wrap"><img src="https://i.etsystatic.com/8814390/r/il/0e49a8/7963746877/il_340x270.7963746877_948a.jpg" alt="Fog and Fern Candle" loading="lazy"></div>
+      <div class="pbody">
+        <div class="pscent">Earthy · Woodland · 8oz</div>
+        <div class="pname">Fog &amp; Fern</div>
+        <div class="pnotes">Ozone · Lavender · Moss</div>
+        <div class="pfoot"><span class="pprice">$12.50</span><span class="pcta">Shop Etsy ↗</span></div>
+      </div>
+    </a>
+
+    <a href="https://www.etsy.com/listing/4488152785/hello-beautiful-candle-feminine-elegant" target="_blank" class="pcard" data-cat="floral" data-name="Hello Beautiful" data-price="$12.50" data-tag="Feminine · Self-Love · 8oz" data-desc="Citrus, white floral and amber — a soft, elegant fragrance all about self-love. A perfect gift for someone special (or yourself)." data-img="https://i.etsystatic.com/8814390/r/il/fd0701/7957355663/il_340x270.7957355663_swil.jpg">
+      <span class="ptag">Gift Idea ♥</span>
+      <div class="pimg-wrap"><img src="https://i.etsystatic.com/8814390/r/il/fd0701/7957355663/il_340x270.7957355663_swil.jpg" alt="Hello Beautiful Candle" loading="lazy"></div>
+      <div class="pbody">
+        <div class="pscent">Feminine · Elegant · 8oz</div>
+        <div class="pname">Hello Beautiful</div>
+        <div class="pnotes">Citrus · White Floral · Amber</div>
+        <div class="pfoot"><span class="pprice">$12.50</span><span class="pcta">Shop Etsy ↗</span></div>
+      </div>
+    </a>
+
+    <a href="https://www.etsy.com/listing/4488141399/bohemian-rose-candle-fresh-rose-water" target="_blank" class="pcard" data-cat="floral" data-name="Bohemian Rose" data-price="$12.50" data-tag="Floral · Garden · 8oz" data-desc="Grapefruit, magnolia & patchouli create a fresh rose water scent. Natural and earthy-chic — like a walk through a blooming garden." data-img="https://i.etsystatic.com/8814390/r/il/c5798e/7957271347/il_340x270.7957271347_6tan.jpg">
+      <div class="pimg-wrap"><img src="https://i.etsystatic.com/8814390/r/il/c5798e/7957271347/il_340x270.7957271347_6tan.jpg" alt="Bohemian Rose Candle" loading="lazy"></div>
+      <div class="pbody">
+        <div class="pscent">Floral · Rose · 8oz</div>
+        <div class="pname">Bohemian Rose</div>
+        <div class="pnotes">Grapefruit · Magnolia · Patchouli</div>
+        <div class="pfoot"><span class="pprice">$12.50</span><span class="pcta">Shop Etsy ↗</span></div>
+      </div>
+    </a>
+
+    <a href="https://www.etsy.com/listing/4488133642/sea-salt-orchid-candle-calming-ocean" target="_blank" class="pcard" data-cat="coastal" data-name="Sea Salt & Orchid" data-price="$12.50" data-tag="Ocean · Spa · 8oz" data-desc="Ozone, amber and tonka bean — a calming ocean scent that's beachy, clean, and relaxing. Our best seller for a reason!" data-img="https://i.etsystatic.com/8814390/r/il/19de92/7957172685/il_340x270.7957172685_o7vm.jpg">
+      <span class="ptag">Best Seller</span>
+      <div class="pimg-wrap"><img src="https://i.etsystatic.com/8814390/r/il/19de92/7957172685/il_340x270.7957172685_o7vm.jpg" alt="Sea Salt and Orchid Candle" loading="lazy"></div>
+      <div class="pbody">
+        <div class="pscent">Coastal · Spa · 8oz</div>
+        <div class="pname">Sea Salt &amp; Orchid</div>
+        <div class="pnotes">Ozone · Amber · Tonka Bean</div>
+        <div class="pfoot"><span class="pprice">$12.50</span><span class="pcta">Shop Etsy ↗</span></div>
+      </div>
+    </a>
+
+    <a href="https://www.etsy.com/listing/4488115633/barber-shop-candle-o-clean-masculine" target="_blank" class="pcard" data-cat="earthy" data-name="Barber Shop" data-price="$12.50" data-tag="Masculine · Clean · 8oz" data-desc="Bergamot, tonka bean & musk — a clean, fresh cologne-inspired candle perfect for men or anyone who loves a crisp, sophisticated scent." data-img="https://i.etsystatic.com/8814390/r/il/891922/7957123417/il_340x270.7957123417_51m8.jpg">
+      <div class="pimg-wrap"><img src="https://i.etsystatic.com/8814390/r/il/891922/7957123417/il_340x270.7957123417_51m8.jpg" alt="Barber Shop Candle" loading="lazy"></div>
+      <div class="pbody">
+        <div class="pscent">Masculine · Fresh · 8oz</div>
+        <div class="pname">Barber Shop</div>
+        <div class="pnotes">Bergamot · Tonka Bean · Musk</div>
+        <div class="pfoot"><span class="pprice">$12.50</span><span class="pcta">Shop Etsy ↗</span></div>
+      </div>
+    </a>
+
+    <a href="https://www.etsy.com/listing/4488106729/sandalwood-candle-warm-woodsy-scent" target="_blank" class="pcard" data-cat="earthy" data-name="Sandalwood" data-price="$12.50" data-tag="Woodsy · Grounding · 8oz" data-desc="Amber, musk & amyris create a warm, woodsy, earthy candle perfect for meditation, yoga, or simply unwinding in your favorite space." data-img="https://i.etsystatic.com/8814390/r/il/0a218b/7957071343/il_340x270.7957071343_e16e.jpg">
+      <div class="pimg-wrap"><img src="https://i.etsystatic.com/8814390/r/il/0a218b/7957071343/il_340x270.7957071343_e16e.jpg" alt="Sandalwood Candle" loading="lazy"></div>
+      <div class="pbody">
+        <div class="pscent">Earthy · Woodsy · 8oz</div>
+        <div class="pname">Sandalwood</div>
+        <div class="pnotes">Amber · Musk · Amyris</div>
+        <div class="pfoot"><span class="pprice">$12.50</span><span class="pcta">Shop Etsy ↗</span></div>
+      </div>
+    </a>
+
+    <a href="https://www.etsy.com/listing/4488092272/lemon-verbena-candle-fresh-citrus-scent" target="_blank" class="pcard" data-cat="citrus" data-name="Lemon Verbena" data-price="$12.50" data-tag="Citrus · Clean · 8oz" data-desc="Lemon, sugar and lemongrass — a bright, clean summer candle. Light and airy, like a warm Arizona breeze on a perfect afternoon." data-img="https://i.etsystatic.com/8814390/r/il/08242e/7908977054/il_340x270.7908977054_2376.jpg">
+      <div class="pimg-wrap"><img src="https://i.etsystatic.com/8814390/r/il/08242e/7908977054/il_340x270.7908977054_2376.jpg" alt="Lemon Verbena Candle" loading="lazy"></div>
+      <div class="pbody">
+        <div class="pscent">Citrus · Fresh · 8oz</div>
+        <div class="pname">Lemon Verbena</div>
+        <div class="pnotes">Lemon · Sugar · Lemongrass</div>
+        <div class="pfoot"><span class="pprice">$12.50</span><span class="pcta">Shop Etsy ↗</span></div>
+      </div>
+    </a>
+
+    <a href="https://www.etsy.com/listing/4488072241/sailing-in-the-high-tides-candle-ocean" target="_blank" class="pcard" data-cat="coastal" data-name="Sailing in the High Tides" data-price="$12.50" data-tag="Ocean · Beach · 8oz" data-desc="Ozone, citrus & jasmine — fresh coastal energy that captures that beach house vibe perfectly. Close your eyes and feel the salt air." data-img="https://i.etsystatic.com/8814390/r/il/b46805/7956864367/il_340x270.7956864367_9wqb.jpg">
+      <div class="pimg-wrap"><img src="https://i.etsystatic.com/8814390/r/il/b46805/7956864367/il_340x270.7956864367_9wqb.jpg" alt="Sailing in the High Tides Candle" loading="lazy"></div>
+      <div class="pbody">
+        <div class="pscent">Coastal · Ocean · 8oz</div>
+        <div class="pname">Sailing in the High Tides</div>
+        <div class="pnotes">Ozone · Citrus · Jasmine</div>
+        <div class="pfoot"><span class="pprice">$12.50</span><span class="pcta">Shop Etsy ↗</span></div>
+      </div>
+    </a>
+
+    <a href="https://www.etsy.com/listing/4438018201/hand-poured-8oz-tin-candles-cozy-aromas" target="_blank" class="pcard" data-cat="specialty" data-name="Hand-Poured 8oz Tin Candles" data-price="$12.50" data-tag="Choose Your Scent · 8oz" data-desc="Can't decide? Our classic hand-poured 8oz tin candles come in a variety of cozy aromas for every mood. Pick your favorite and make your home smell amazing." data-img="https://i.etsystatic.com/8814390/r/il/786ac9/7630275883/il_340x270.7630275883_tb5j.jpg">
+      <div class="pimg-wrap"><img src="https://i.etsystatic.com/8814390/r/il/786ac9/7630275883/il_340x270.7630275883_tb5j.jpg" alt="Hand-Poured 8oz Tin Candles" loading="lazy"></div>
+      <div class="pbody">
+        <div class="pscent">Assorted · Choose Scent · 8oz</div>
+        <div class="pname">Hand-Poured 8oz Tin</div>
+        <div class="pnotes">Cozy aromas for every mood</div>
+        <div class="pfoot"><span class="pprice">$12.50</span><span class="pcta">Shop Etsy ↗</span></div>
+      </div>
+    </a>
+
+  </div>
+</section>
+
+<!-- ALLERGY FREE -->
+<section id="allergy" class="allergy-section">
+  <div class="allergy-inner">
+    <div class="allergy-header">
+      <span class="section-eyebrow">Why We're Different</span>
+      <h2 class="section-title">Allergy-Conscious <em>by Design</em></h2>
+      <p>One customer said it best: "The only candles and wax melts that don't give me a headache." That's the standard we hold ourselves to every single time.</p>
+    </div>
+    <div class="allergy-grid">
+      <div class="acard"><span class="aicon">🌿</span><div class="atitle">Parasoy Wax Blend</div><div class="adesc">Our parasoy blend burns cleaner than paraffin alone — minimal soot and a pure, even scent throw that's gentler on your airways.</div></div>
+      <div class="acard"><span class="aicon">🚫</span><div class="atitle">Phthalate-Free Fragrances</div><div class="adesc">Every fragrance oil we use is phthalate-free. No hormone disruptors, no harsh chemicals. Just pure, beautiful scent you can breathe in with confidence.</div></div>
+      <div class="acard"><span class="aicon">🕯️</span><div class="atitle">Cotton Wicks Only</div><div class="adesc">Lead-free cotton wicks mean a clean, even burn with no toxic heavy metal emissions. Better for you, your home, and the air you breathe.</div></div>
+      <div class="acard"><span class="aicon">🧪</span><div class="atitle">Perfected Ratios</div><div class="adesc">Raquel spent years perfecting fragrance ratios — enough scent to fill a room beautifully, but never overwhelming or headache-inducing.</div></div>
+      <div class="acard"><span class="aicon">🏡</span><div class="atitle">Home & Family Safe</div><div class="adesc">Made without harsh additives, our candles are suitable for homes with children, pets, and scent-sensitive individuals. Burn with peace of mind.</div></div>
+      <div class="acard"><span class="aicon">✨</span><div class="atitle">Long Clean Burn</div><div class="adesc">Zero ash build-up, no tunneling. Our candles are engineered to look great, burn evenly, and last up to 45+ hours.</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ARIZONA -->
+<section class="az-section">
+  <div class="az-inner">
+    <div class="az-content">
+      <span class="section-eyebrow" style="color:var(--gold)">Made in Arizona</span>
+      <h2>Inspired by the <em>Desert & Its Sunsets</em></h2>
+      <p>Saint David, Arizona isn't just where we make our candles — it's our muse. The wide-open skies, dramatic saguaro landscapes, and sunsets that paint the horizon in gold and orange every single evening.</p>
+      <p>Every scent we create carries a piece of that Arizona spirit — from our Desert Citrus that captures a warm desert morning to the earthy Fog & Fern that bottles the magic of monsoon rain on dry earth.</p>
+      <a href="https://www.etsy.com/shop/TheCandleBunkhouse" target="_blank" class="btn-rust" style="margin-top:0.5rem">Bring Arizona Home ↗</a>
+    </div>
+    <div class="az-photos">
+      <div class="azp"><img src="https://i.etsystatic.com/isa/1af478/1173578085730/isa_760xN.1173578085730_j4o9.jpg" alt="Candle making process" loading="lazy"></div>
+      <div class="azp"><img src="https://i.etsystatic.com/isa/c751e5/1195964961811/isa_760xN.1195964961811_cfdg.jpg" alt="Craft shows" loading="lazy"></div>
+      <div class="azp-wide"><img src="https://i.etsystatic.com/isa/13cdd5/1173581426376/isa_760xN.1173581426376_99fz.jpg" alt="Raquel and John travel" loading="lazy"></div>
+    </div>
+  </div>
+</section>
+
+<!-- REVIEWS -->
+<section id="reviews" class="reviews-section">
+  <div class="reviews-inner">
+    <div class="reviews-header">
+      <span class="section-eyebrow">What Customers Are Saying</span>
+      <div class="rev-stars-big">★★★★★</div>
+      <h2 class="section-title">5.0 Stars — <em>503 Happy Customers</em></h2>
+    </div>
+    <div class="rev-grid">
+      <div class="rcard"><div class="rcard-stars">★★★★★</div><div class="rcard-text">"The only candles and wax melts that don't give me a headache. Beautiful packaging! The candles always burn very clean. The perfect amount of fragrance!"</div><div class="rcard-author">— Brittany</div></div>
+      <div class="rcard"><div class="rcard-stars">★★★★★</div><div class="rcard-text">"Not only do the candles smell amazing but shipping was lightning fast! 1000% recommend to anyone that wants their space to smell good 💜"</div><div class="rcard-author">— Etsy Buyer</div></div>
+      <div class="rcard"><div class="rcard-stars">★★★★★</div><div class="rcard-text">"Awesome as always. Fast shipping and smells amazing. Def will buy again."</div><div class="rcard-author">— Julie</div></div>
+      <div class="rcard"><div class="rcard-stars">★★★★★</div><div class="rcard-text">"Love my melts from The Candle Bunkhouse. Wonderfully delightful scents that last."</div><div class="rcard-author">— EvolvedThought</div></div>
+      <div class="rcard"><div class="rcard-stars">★★★★★</div><div class="rcard-text">"I ordered and the very next day my order was shipped. These are so unique and the smell is amazing!"</div><div class="rcard-author">— Debbie</div></div>
+      <div class="rcard"><div class="rcard-stars">★★★★★</div><div class="rcard-text">"Great candles and superb customer service. I will be a customer for life!"</div><div class="rcard-author">— EvolvedThought</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- SHIPPING CTA -->
+<section id="shipping" class="ship-section">
+  <div class="ship-inner">
+    <span class="section-eyebrow">Nationwide Shipping</span>
+    <h2 class="section-title" style="margin-bottom:0.8rem">From Our Desert Home<br>to <em>Yours</em></h2>
+    <p>No matter where you are in the country, we'll bring the warmth and scent of Arizona right to your doorstep. Every order is packaged with care and shipped fast from Saint David, AZ.</p>
+    <div class="ship-feats">
+      <div class="sf"><div class="sf-icon">📦</div><div class="sf-label">Careful Packaging</div></div>
+      <div class="sf"><div class="sf-icon">⚡</div><div class="sf-label">Fast Shipping</div></div>
+      <div class="sf"><div class="sf-icon">🗺️</div><div class="sf-label">Ships Nationwide</div></div>
+      <div class="sf"><div class="sf-icon">💳</div><div class="sf-label">Secure on Etsy</div></div>
+    </div>
+    <a href="https://www.etsy.com/shop/TheCandleBunkhouse" target="_blank" class="etsy-btn">🛒 Shop Now on Etsy</a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-grid">
+    <div>
+      <div class="footer-brand">
+        <img src="https://i.etsystatic.com/8814390/r/isla/0557b1/68080192/isla_180x180.68080192_932orakt.jpg" alt="Logo" class="f-logo">
+        <div class="f-brand-text">The Candle Bunk House<span>Saint David, Arizona</span></div>
+      </div>
+      <p class="footer-about">Hand-poured, allergy-conscious candles made with love by Raquel in the heart of Arizona. Shipping coast to coast since 2014.</p>
+      <div class="footer-socials">
+        <a href="http://www.facebook.com/thecandlebunkhouse" target="_blank" class="soc">f</a>
+        <a href="http://www.instagram.com/RAQUELTHOMPSON38" target="_blank" class="soc">ig</a>
+        <a href="https://www.etsy.com/shop/TheCandleBunkhouse" target="_blank" class="soc">e</a>
+      </div>
+    </div>
+    <div class="fcol">
+      <h4>Shop</h4>
+      <ul>
+        <li><a href="https://www.etsy.com/shop/TheCandleBunkhouse" target="_blank">All Candles</a></li>
+        <li><a href="https://www.etsy.com/listing/4490284577/desert-citrus-candle-bright-citrus-scent" target="_blank">Desert Citrus</a></li>
+        <li><a href="https://www.etsy.com/listing/4488133642/sea-salt-orchid-candle-calming-ocean" target="_blank">Sea Salt &amp; Orchid</a></li>
+        <li><a href="https://www.etsy.com/listing/4488058354/cote-dazur-candle-o-luxury-coastal-scent" target="_blank">Côte d'Azur</a></li>
+        <li><a href="https://www.etsy.com/listing/1566463434/16oz-paint-can-candles-fall-candles" target="_blank">Paint Can Candles</a></li>
+      </ul>
+    </div>
+    <div class="fcol">
+      <h4>Connect</h4>
+      <ul>
+        <li><a href="https://www.etsy.com/shop/TheCandleBunkhouse" target="_blank">Etsy Shop</a></li>
+        <li><a href="http://www.facebook.com/thecandlebunkhouse" target="_blank">Facebook</a></li>
+        <li><a href="http://www.instagram.com/RAQUELTHOMPSON38" target="_blank">Instagram</a></li>
+        <li><a href="https://www.etsy.com/messages/new?with_id=39943154" target="_blank">Message Raquel</a></li>
+        <li><a href="https://www.etsy.com/shop/TheCandleBunkhouse/reviews" target="_blank">Read Reviews</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2026 The Candle Bunk House, LLC · Saint David, Arizona · All purchases made securely through <a href="https://www.etsy.com/shop/TheCandleBunkhouse" target="_blank">Etsy</a></p>
+  </div>
+</footer>
+
+<!-- MODAL -->
+<div class="modal-bg" id="modal">
+  <div class="modal-box">
+    <button class="modal-close" id="modalClose">✕</button>
+    <img id="mImg" src="" alt="" class="modal-img">
+    <div class="modal-body">
+      <div class="m-tag" id="mTag"></div>
+      <div class="m-name" id="mName"></div>
+      <div class="m-desc" id="mDesc"></div>
+      <div class="m-price" id="mPrice"></div>
+      <a id="mLink" href="#" target="_blank" class="m-link">Shop on Etsy ↗</a>
+    </div>
+  </div>
+</div>
+
+<script>
+window.addEventListener('scroll',()=>{
+  document.getElementById('mainNav').classList.toggle('scrolled',window.scrollY>60)
+})
+
+document.querySelectorAll('.ftab').forEach(t=>{
+  t.addEventListener('click',()=>{
+    document.querySelectorAll('.ftab').forEach(x=>x.classList.remove('active'))
+    t.classList.add('active')
+    const f=t.dataset.filter
+    document.querySelectorAll('.pcard').forEach(c=>{
+      c.classList.toggle('hidden',f!=='all'&&c.dataset.cat!==f)
+    })
+  })
+})
+
+document.querySelectorAll('.pcard').forEach(card=>{
+  card.addEventListener('click',e=>{
+    if(e.target.classList.contains('pcta'))return
+    e.preventDefault()
+    document.getElementById('mImg').src=card.dataset.img
+    document.getElementById('mImg').alt=card.dataset.name
+    document.getElementById('mTag').textContent=card.dataset.tag
+    document.getElementById('mName').textContent=card.dataset.name
+    document.getElementById('mDesc').textContent=card.dataset.desc
+    document.getElementById('mPrice').textContent=card.dataset.price
+    document.getElementById('mLink').href=card.href
+    document.getElementById('modal').classList.add('open')
+  })
+})
+
+document.getElementById('modalClose').onclick=()=>document.getElementById('modal').classList.remove('open')
+document.getElementById('modal').onclick=e=>{if(e.target===document.getElementById('modal'))document.getElementById('modal').classList.remove('open')}
+</script>
+</body>
+</html>
